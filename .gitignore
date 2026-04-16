@@ -1,0 +1,77 @@
+# =========================
+# PYTHON
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# =========================
+# VIRTUAL ENVIRONMENTS
+# =========================
+venv/
+env/
+ENV/
+.venv/
+
+# =========================
+# JUPYTER / COLAB
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# DATA FILES (IMPORTANT)
+# =========================
+data/raw/
+data/processed/
+*.json
+*.csv
+*.tsv
+
+# If you want to keep structure but not data:
+!data/
+!data/raw/
+!data/processed/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# =========================
+# MODEL FILES (VERY LARGE)
+# =========================
+models/
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# =========================
+# LOGS
+# =========================
+logs/
+*.log
+
+# =========================
+# HUGGINGFACE CACHE
+# =========================
+.cache/
+.huggingface/
+hf_cache/
+
+# =========================
+# OS FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / EDITOR
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# TEMP FILES
+# =========================
+*.tmp
+*.temp
