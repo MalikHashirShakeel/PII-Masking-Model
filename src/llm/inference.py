@@ -78,6 +78,7 @@ def name_in_text(name, text):
     2. Case-insensitive regex match
     3. Unicode-normalized comparison
     4. ASCII-only comparison (handles mojibake)
+    5. Word-by-word containment check (each word must appear in text)
 
     Args:
         name (str): The name to search for.
@@ -107,31 +108,109 @@ def name_in_text(name, text):
     if ascii_name and len(ascii_name) >= 3 and ascii_name in ascii_text:
         return True
 
+    # Word-by-word check: if every word from the name appears in the text,
+    # accept it (handles minor spacing/ordering differences)
+    name_words = name.split()
+    if len(name_words) >= 2:
+        text_lower = text.lower()
+        if all(w.lower() in text_lower for w in name_words):
+            return True
+
     return False
+
+
+def _is_valid_email_pattern(text_candidate):
+    """Check if a string looks like a plausible email address.
+
+    Validates that the candidate has a proper local part, @ symbol,
+    and valid domain with TLD. Filters out garbage regex matches
+    like "California peninsula@ yahoo . com".
+
+    Args:
+        text_candidate (str): Potential email string.
+
+    Returns:
+        bool: True if it looks like a valid email.
+    """
+    # Reject if original text before @ looks like natural language
+    # (multiple words with uppercase letters, e.g., "California peninsula@")
+    at_variants = ['@', ' @ ', ' @', '@ ']
+    for at in at_variants:
+        if at in text_candidate:
+            before_at = text_candidate.split(at)[0].strip()
+            # If the part before @ has spaces between capitalized words,
+            # it's natural language, not an email local part
+            words_before = before_at.split()
+            if len(words_before) >= 2:
+                capitalized = sum(1 for w in words_before if w[0:1].isupper())
+                if capitalized >= 1:
+                    return False
+            break
+
+    # Normalize: remove spaces for validation
+    normalized = re.sub(r'\s+', '', text_candidate).lower()
+
+    # Must have exactly one @
+    if normalized.count('@') != 1:
+        return False
+
+    local, domain = normalized.split('@')
+
+    # Local part must be non-empty and alphanumeric (with dots/underscores)
+    if not local or not re.match(r'^[a-z0-9._+\-]+$', local):
+        return False
+
+    # Domain must have at least one dot and valid TLD
+    if '.' not in domain:
+        return False
+
+    parts = domain.split('.')
+    tld = parts[-1]
+    if len(tld) < 2 or not tld.isalpha():
+        return False
+
+    # Domain parts must be alphanumeric
+    if not all(re.match(r'^[a-z0-9\-]+$', p) for p in parts):
+        return False
+
+    return True
 
 
 def extract_emails_regex(text):
     """Regex-based fallback to find emails in tokenized text (with spaces around @ and .).
 
     Matches patterns like: "sarah668 @ gmail . com", "john . doe @ company . org"
+    Validates matches to avoid false positives.
 
     Args:
         text (str): Input text potentially containing spaced-out emails.
 
     Returns:
-        list[str]: Extracted email strings.
+        list[str]: Extracted and validated email strings.
     """
-    # Match tokenized email patterns: word(s) separated by " . " then " @ " then domain parts
-    pattern = r'(\b\w[\w.]*(?:\s*\.\s*\w+)*\s*@\s*\w+(?:\s*\.\s*\w+)+)'
-
-    # For space-tokenized emails, use a more specific pattern
+    # For space-tokenized emails, use a specific pattern
     spaced_pattern = r'(\S+(?:\s*\.\s*\S+)*\s+@\s+\S+(?:\s+\.\s+\S+)+)'
 
+    # Standard email pattern
+    pattern = r'(\b\w[\w.]*(?:\s*\.\s*\w+)*\s*@\s*\w+(?:\s*\.\s*\w+)+)'
+
     found = []
+    seen_normalized = set()
+
     for pat in [spaced_pattern, pattern]:
         for m in re.finditer(pat, text):
             email = m.group(0).strip()
-            if '@' in email or '@ ' in email:
+            if '@' not in email and '@ ' not in email:
+                continue
+
+            # Validate the match looks like a real email
+            if not _is_valid_email_pattern(email):
+                continue
+
+            # Deduplicate
+            norm = re.sub(r'\s+', '', email).lower()
+            if norm not in seen_normalized:
+                seen_normalized.add(norm)
                 found.append(email)
 
     return found
@@ -180,6 +259,14 @@ def run_llm_mask(text, tokenizer, model):
     # 1. Filter hallucinated names (not actually in the text)
     filtered_names = []
     for name in result["names"]:
+        # Skip if the "name" looks like an email address
+        if '@' in name or '@ ' in name:
+            print(f"  FILTERED email-as-name: '{name}'")
+            continue
+        # Skip if it contains digits (likely email local part, not a name)
+        if re.search(r'\d', name) and not name_in_text(name, text):
+            print(f"  FILTERED numeric non-name: '{name}'")
+            continue
         if name_in_text(name, text):
             filtered_names.append(name)
         else:
@@ -198,14 +285,18 @@ def run_llm_mask(text, tokenizer, model):
                 if words_before:
                     local_part = words_before[-1]
                     full_email = local_part + " " + email
-                    fixed_emails.append(full_email)
-                    continue
-        fixed_emails.append(email)
+                    if _is_valid_email_pattern(full_email):
+                        fixed_emails.append(full_email)
+                        continue
+        # Validate before accepting
+        if _is_valid_email_pattern(email):
+            fixed_emails.append(email)
+        else:
+            print(f"  FILTERED invalid email: '{email}'")
 
     # 3. Regex fallback: catch emails missed by the LLM entirely
     regex_emails = extract_emails_regex(text)
     for re_email in regex_emails:
-        # Normalize for comparison
         re_norm = re.sub(r'\s+', '', re_email).lower()
         already_found = any(
             re.sub(r'\s+', '', fe).lower() == re_norm
@@ -214,23 +305,34 @@ def run_llm_mask(text, tokenizer, model):
         if not already_found:
             fixed_emails.append(re_email)
 
-    # 4. Remove any name that is actually part of an email
-    email_text_combined = " ".join(fixed_emails).lower()
+    # 4. Remove names that are ONLY present as part of an email local part
+    #    (but KEEP names that also appear independently in the text)
     final_names = []
     for name in filtered_names:
         name_lower = name.lower()
-        # Check if this name is just a component of an email address
-        if name_lower in email_text_combined:
-            # Double-check: is this name independently present outside emails?
-            text_without_emails = text
-            for em in fixed_emails:
-                text_without_emails = text_without_emails.replace(em, "")
-            if name in text_without_emails:
-                final_names.append(name)
-            else:
-                print(f"  FILTERED email-component name: '{name}'")
-        else:
+
+        # Build text with emails removed to check independent presence
+        text_without_emails = text
+        for em in fixed_emails:
+            text_without_emails = text_without_emails.replace(em, " ")
+
+        # If the name still exists in the text after removing emails, keep it
+        if name_in_text(name, text_without_emails):
             final_names.append(name)
+        else:
+            # Check if name matches an email local part pattern exactly
+            is_email_component = False
+            for em in fixed_emails:
+                em_normalized = re.sub(r'\s+', '', em).lower()
+                if name_lower in em_normalized.split('@')[0]:
+                    is_email_component = True
+                    break
+
+            if is_email_component:
+                print(f"  FILTERED email-component name: '{name}'")
+            else:
+                # Not in email either — keep it (likely a real name)
+                final_names.append(name)
 
     result["names"] = final_names
     result["emails"] = fixed_emails

@@ -256,35 +256,47 @@ python main.py predict --model llm --text "Contact Sarah Connor at sarah@skynet.
 
 ## Results & Comparison
 
-### BERT Fine-Tuned Model (Test Set)
+### BERT Fine-Tuned (Full Test Set, 3650 Samples)
+
+The BERT model was evaluated on the full un-augmented test set to measure its true generalizability.
 
 | Metric | Value |
 |--------|-------|
-| **Precision** | 0.9698 |
-| **Recall** | 0.9731 |
-| **F1-Score** | 0.9715 |
-| **Eval Loss** | 0.0157 |
+| **Accuracy (Token-level)** | 0.9953 |
+| **Precision (Entity-level)** | 0.9698 |
+| **Recall (Entity-level)** | 0.9731 |
+| **F1-Score (Entity-level)** | 0.9715 |
+| **False Positive Rate (FPR)** | 0.0025 |
+| **False Negative Rate (FNR)** | 0.0136 |
 
-### LLM Zero-Shot (147 Augmented Test Samples)
+**Confusion Matrix:**
+- **True Positives (TP):** 15,570
+- **False Positives (FP):** 210
+- **False Negatives (FN):** 214
+- **True Negatives (TN):** 84,694
 
-| Metric | Names | Emails |
-|--------|-------|--------|
-| **Precision** | 0.9425 | 0.7833 |
-| **Recall** | 0.4039 | 1.0000 |
-| **F1-Score** | 0.5655 | 0.8785 |
-| **FPR** | 0.0000 | 0.0000 |
-| **FNR** | 0.5961 | 0.0000 |
+### LLM Zero-Shot (Test Set Subset, Augmented)
+
+*Note: Generative models suffer from boundary mismatches (e.g., getting "John's" instead of "John") and formatting differences (accents, casing). We report three levels of evaluation for names to provide a realistic assessment of true PII detection capability.*
+
+| Metric | Names (Strict Exact Match) | Names (Partial Overlap) | Emails |
+|--------|-----------------------------|---------------------------|--------|
+| **Precision** | 0.8293 | 0.8699 | 0.8393 |
+| **Recall**    | 0.5178 | 0.5271 | 1.0000 |
+| **F1-Score**  | 0.6375 | 0.6564 | 0.9126 |
+| **FPR**       | 0.0000 | - | 0.0000 |
+| **FNR**       | 0.4822 | - | 0.0000 |
 
 ### Head-to-Head Comparison
 
 | Dimension | BERT (Fine-Tuned) | LLM (Zero-Shot) |
 |-----------|-------------------|------------------|
-| **Name F1** | ~0.97 | ~0.57 |
-| **Email Detection** | Regex-based (near-perfect) | Regex + LLM (perfect recall) |
+| **Name F1** | **0.9715** (Strict) | 0.6564 (Partial) |
+| **Email F1** | **>0.99** (Hybrid Regex) | 0.9126 (Hybrid Regex) |
 | **Training Required** | ✅ Yes (3 epochs, ~7 min) | ❌ No |
-| **Inference Speed** | ⚡ Fast (~50 samples/sec) | 🐢 Slow (~1 sample/sec) |
-| **Generalization** | Domain-specific | More generalizable |
-| **False Positives** | Rare (confidence filtering) | Very rare (high precision) |
+| **Inference Speed** | ⚡ Fast (~15 samples/sec) | 🐢 Slow (~1 sample/sec) |
+| **Adaptability** | Domain-specific (needs retraining) | **High** (prompt-based updates) |
+| **Hallucinations** | None | Mitigated via text-filtering |
 
 ---
 
