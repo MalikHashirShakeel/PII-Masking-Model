@@ -6,6 +6,10 @@ __pycache__/
 *.pyo
 *.pyd
 *.so
+*.egg-info/
+*.egg
+dist/
+build/
 
 # =========================
 # VIRTUAL ENVIRONMENTS
@@ -21,18 +25,10 @@ ENV/
 .ipynb_checkpoints/
 
 # =========================
-# DATA FILES (IMPORTANT)
+# DATA FILES
 # =========================
-data/raw/
-data/processed/
-*.json
-*.csv
-*.tsv
-
-# If you want to keep structure but not data:
-!data/
-!data/raw/
-!data/processed/
+data/raw/*.json
+data/processed/*.json
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
@@ -44,12 +40,29 @@ models/
 *.pt
 *.pth
 *.ckpt
+*.safetensors
 
 # =========================
-# LOGS
+# OUTPUTS
+# =========================
+outputs/
+!outputs/.gitkeep
+
+# =========================
+# LOGS & TEMP
 # =========================
 logs/
 *.log
+*.tmp
+*.temp
+
+# =========================
+# SECRETS & TOKENS
+# =========================
+token.txt
+*.token
+.env
+.env.*
 
 # =========================
 # HUGGINGFACE CACHE
@@ -63,15 +76,13 @@ hf_cache/
 # =========================
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # =========================
 # IDE / EDITOR
 # =========================
 .vscode/
 .idea/
-
-# =========================
-# TEMP FILES
-# =========================
-*.tmp
-*.temp
+*.swp
+*.swo
+*~

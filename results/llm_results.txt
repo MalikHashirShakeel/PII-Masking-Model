@@ -1,0 +1,213 @@
+Loading model...
+Loading weights: 100%|████████████████████████████████████████████████| 338/338 [00:00<00:00, 413.40it/s]
+Loading test data...
+Augmenting test data with emails...
+Evaluating 147 samples...
+The following generation flags are not valid and may be ignored: ['temperature', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+DEBUG RAW LLM OUTPUT: '{"names": ["Brad Wilk"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Brad Wilk"], "emails": ["david187 @ outlook . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["daniel . jessica @ hotmail . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Ronald Stein"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Lord Londonderry"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Emily Jessica"], "emails": ["emily . jessica @ yahoo . com"]}'
+  FILTERED hallucinated name: 'Emily Jessica'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+Processed 10/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": ["Frederick"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Mounir El Hamdaoui"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Mounir El matthew"], "emails": ["hamdaoui@hotmail.com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Meryl Streep", "Renée Zellweger"], "emails": ["john @ outlook . com"]}'  FILTERED hallucinated name: 'Meryl Streep'
+DEBUG RAW LLM OUTPUT: '{"names": ["Josephine Baker"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Johan Museeuw"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Stijn Devolder"], "emails": ["sarah @ gmail . com"]}'
+Processed 20/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Jean-René Bernaudeau"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Jean-René Bernaudeau"], "emails": ["daniel981 @ outlook . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Tyler Farrar"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Philippe Gilbert"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Johan Museeuw"], "emails": ["daniel876 @ outlook . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Marcel Kittel"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Marcel Kittel", "Daniel Michael"], "emails": ["hotmail . com"]}'
+  FILTERED hallucinated name: 'Daniel Michael'
+Processed 30/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Sarah Daniel"], "emails": ["sarah . daniel @ outlook . com"]}'
+  FILTERED hallucinated name: 'Sarah Daniel'
+DEBUG RAW LLM OUTPUT: '{"names": ["Jean-Yves Le Drian", "Tomasz Siemoniak"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Ashley Sarah"], "emails": ["ashley . sarah @ gmail . com"]}'
+  FILTERED hallucinated name: 'Ashley Sarah'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["chris . john @ yahoo . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Federico Fellini"], "emails": ["matthew @ company . org"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+Processed 40/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["daniel @ yahoo . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Orion Clemens"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Chris Clemens", "Orion Clemens"], "emails": ["sarah @ yahoo . com"]}'
+  FILTERED hallucinated name: 'Chris Clemens'
+DEBUG RAW LLM OUTPUT: '{"names": ["Henry Huttleston Rogers"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Chris", "Henry Huttleston Rogers"], "emails": ["chris . emily @ hotmail . com"]}'
+  FILTERED email-component name: 'Chris'
+DEBUG RAW LLM OUTPUT: '{"names": ["Dan DeQuille"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Ina Coolbrith"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Ina jessica @ outlook . com"], "emails": ["Coolbrith"]}'
+Processed 50/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": ["Susy", "Clara", "Jean"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Harold Urey"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Yoshinori Kitase"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["ashley486 @ outlook . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Harold Urey"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Harold Urey"], "emails": ["michael947 @ company . org"]}'
+Processed 60/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["jessica @ yahoo . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Lasse Holm", "Kikki Danielsson"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["michael @ outlook . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["George van Raemdonck"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["chris . matthew @ outlook . com"]}'
+Processed 70/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Marcin Burkhardt"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["sarah @ gmail . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Keith Lockhart"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Sarah"], "emails": ["@ company . org"]}'
+  FILTERED email-component name: 'Sarah'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+Processed 80/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": ["matthew . david @ yahoo . com"], "emails": ["matthew . david @ yahoo . 
+com"]}'
+  FILTERED email-component name: 'matthew . david @ yahoo . com'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["John"], "emails": ["john @ hotmail . com"]}'
+  FILTERED email-component name: 'John'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Nick"], "emails": ["heidfeld@ gmail . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Father Eusebio Kino"], "emails": ["California peninsula@ yahoo . com"]}'
+Processed 90/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Daniel Matthew"], "emails": ["daniel . matthew @ gmail . com"]}'
+  FILTERED hallucinated name: 'Daniel Matthew'
+DEBUG RAW LLM OUTPUT: '{"names": ["Naomi"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["David"], "emails": ["david @ company . org"]}'
+  FILTERED email-component name: 'David'
+DEBUG RAW LLM OUTPUT: '{"names": ["Bill Russell"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Fred Armisen", "Carrie Brownstein"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Colin Meloy"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Emily"], "emails": ["emily @ outlook . com"]}'
+  FILTERED email-component name: 'Emily'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+Processed 100/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": ["Ruth Daniel Emily"], "emails": ["ruth.daniel.emily@outlook.com"]}'
+  FILTERED hallucinated name: 'Ruth Daniel Emily'
+DEBUG RAW LLM OUTPUT: '{"names": ["Frank Robinson", "Pete Richert", "Bob O\'Brien", "Sergio Robles", "Royle Stillman"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Daniel"], "emails": ["daniel @ hotmail . com"]}'
+  FILTERED email-component name: 'Daniel'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["emily"], "emails": ["@ hotmail . com"]}'
+  FILTERED email-component name: 'emily'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Gene Tierney", "Richard Conte", "José Ferrer", "Charles Bickford", "Constance Collier"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Adrian Paul", "Mia Kirshner"], "emails": []}'
+Processed 110/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": ["Ruth"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["John Chris"], "emails": ["johncris@Gmail.com"]}'
+  FILTERED hallucinated name: 'John Chris'
+DEBUG RAW LLM OUTPUT: '{"names": ["Patrick Kisnorbo", "James Wesolowski", "Danny Tiatto"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Patrick Kisnorbo", "James Wesolowski", "Danny Tiatto"], "emails": ["emily134 @ gmail . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Emily703"], "emails": ["emily703 @ outlook . com"]}'
+  FILTERED email-component name: 'Emily703'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Naomi", "Sarah", "Michael"], "emails": ["gmail . com"]}'
+  FILTERED email-component name: 'Sarah'
+  FILTERED email-component name: 'Michael'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Obed", "Jesse", "David", "King David"], "emails": []}'
+Processed 120/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Jessica Jessica"], "emails": ["jessica . jessica @ outlook . com"]}'
+  FILTERED hallucinated name: 'Jessica Jessica'
+DEBUG RAW LLM OUTPUT: '{"names": ["Monica Forsberg", "Torgny Söderberg"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Ashley David"], "emails": ["ashley . david @ yahoo . com"]}'
+  FILTERED hallucinated name: 'Ashley David'
+DEBUG RAW LLM OUTPUT: '{"names": ["Lena Philipsson"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Philipsson"], "emails": ["Lena john835 @ yahoo . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Lena Philipsson"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["sarah33 @ outlook . com"]}'
+Processed 130/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": ["Bonnie Guitar", "Merrilee Rush"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Sigourney Weaver"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Sigourney Weaver"], "emails": ["david . david @ outlook . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Ridley Scott"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Chris Ashley"], "emails": ["chris . ashley @ company . org"]}'
+  FILTERED hallucinated name: 'Chris Ashley'
+DEBUG RAW LLM OUTPUT: '{"names": ["Jonathan Orozco"], "emails": []}'
+Processed 140/147 samples...
+DEBUG RAW LLM OUTPUT: '{"names": ["Jonathan Orozco"], "emails": ["daniel . daniel @ yahoo . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Rafael Márquez"], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Jessica", "Cesare Bovo"], "emails": ["jessica . chris @ outlook . com"]}'
+  FILTERED email-component name: 'Jessica'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": []}'
+DEBUG RAW LLM OUTPUT: '{"names": [], "emails": ["jessica191 @ hotmail . com"]}'
+DEBUG RAW LLM OUTPUT: '{"names": ["Malaclypse the Younger", "Greg Hill"], "emails": []}'
+
+==========================
+📊 LLM Evaluation Results
+==========================
+Total test samples evaluated: 147
+
+--- NAMES ---
+  TP: 82  |  FP: 5  |  FN: 121
+  Precision: 0.9425
+  Recall:    0.4039
+  F1-Score:  0.5655
+  FPR:       0.0000
+  FNR:       0.5961
+
+--- EMAILS ---
+  TP: 47  |  FP: 13  |  FN: 0
+  Precision: 0.7833
+  Recall:    1.0000
+  F1-Score:  0.8785
+  FPR:       0.0000
+  FNR:       0.0000
+(venv) PS E:\DS_Internship_Task_2026\DS_internship_task\project\src\llm> 
